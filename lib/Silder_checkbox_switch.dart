@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Silder extends StatefulWidget {
   const Silder({super.key});
@@ -37,7 +38,8 @@ class _SilderState extends State<Silder> {
                 setState(() {
                   currentvalue = value!;
                 });
-              }),
+              }
+              ),
           Switch(
               value: currentvalue1,
               activeColor: Colors.amber,
@@ -47,7 +49,29 @@ class _SilderState extends State<Silder> {
                 setState(() {
                   currentvalue1 = value;
                 });
-              })
+              }),
+          ElevatedButton(
+              onPressed: () {
+                final snackBar = SnackBar(
+                  content: Text('Show Snackbar'),
+                  action: SnackBarAction(label: 'undo', onPressed: () {}),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              },
+              child: Text('snackbar')),
+          ElevatedButton(
+              onPressed: () {
+                Fluttertoast.showToast(
+                  msg: 'This is Center Short Toast',
+                  toastLength: Toast.LENGTH_LONG,
+                  fontSize: 20,
+                  gravity: ToastGravity.CENTER_RIGHT,
+                  timeInSecForIosWeb: 5,
+                  backgroundColor: Colors.green,
+                  textColor: Colors.white,
+                );
+              },
+              child: Text('Flutter toast'))
         ],
       ),
     );
